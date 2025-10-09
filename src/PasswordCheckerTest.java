@@ -8,6 +8,4 @@ public class PasswordCheckerTest {
   public void testDescribePasswordLength() {
     PasswordChecker word = new PasswordChecker(5, 6);
     assertEquals(2, 0);
-  }
-
 }
