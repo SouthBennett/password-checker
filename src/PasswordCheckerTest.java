@@ -9,6 +9,7 @@ public class PasswordCheckerTest {
     // This test is used only to validate that your VS Code setup is working
     // Delete this test after you have written your other tests
     assertEquals(0, 0);
+    System.out.println("hi");
   }
 
 }
