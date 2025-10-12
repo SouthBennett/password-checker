@@ -56,14 +56,14 @@ public class PasswordCheckerTest {
 
   }
 
-  // Test 2: test to see if isAlphanumerc all letters 
+  // Test 2: test to see if isAlphanumerc will accept symbols
   // Test works but if the string is "Hello1" the test still passes
   // its gotta be the method thats causing this but i cant figure it out
   @Test
-public void testIsAlphanumeric_AllLetters() {
+public void testIsAlphanumeric_FailWithSymbol() {
     //Arrange
     PasswordChecker checker = new PasswordChecker(5, 10);
-    String password = "Hello1";
+    String password = "Hello@";
 
     //Act
     boolean actual = checker.isAlphanumeric(password);
@@ -73,8 +73,15 @@ public void testIsAlphanumeric_AllLetters() {
 }
 
   // Test 3: maybe check if its empty, or has special characters or stuff.
+@Test  
+public void testIsAlphaNumeric_EmptyString() {
+  PasswordChecker checker = new PasswordChecker(5, 10);
+  String password = "";
 
+  boolean actual = checker.isAlphanumeric(password);
 
+  assertEquals(true, actual);
+}  
   
   //Test for the third public method isBannedPassword: check whether the password is banned, returns true if the password exist in the banned password set
   // Test 1: basic check, checks whether "password123" exist. 
