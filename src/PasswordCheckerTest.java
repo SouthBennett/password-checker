@@ -75,12 +75,15 @@ public void testIsAlphanumeric_FailWithSymbol() {
   // Test 3: maybe check if its empty, or has special characters or stuff.
 @Test  
 public void testIsAlphaNumeric_EmptyString() {
+  //Arrange 
   PasswordChecker checker = new PasswordChecker(5, 10);
   String password = "";
 
+  //Act
   boolean actual = checker.isAlphanumeric(password);
 
-  assertEquals(true, actual);
+  //Assert
+  assertEquals(false, actual);
 }  
   
   //Test for the third public method isBannedPassword: check whether the password is banned, returns true if the password exist in the banned password set

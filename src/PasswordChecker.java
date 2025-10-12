@@ -61,6 +61,11 @@ public class PasswordChecker {
      * @return true if the password is alphanumeric, false otherwise
      */
     public boolean isAlphanumeric(String password) {
+        //Handles the edgecase where password is an empty string
+        if (password.isEmpty()) {
+            return false;
+        }
+
         for (int i = 0; i < password.length(); i++) {
             char c = password.charAt(i);
             if (!Character.isLetterOrDigit(c)) {
