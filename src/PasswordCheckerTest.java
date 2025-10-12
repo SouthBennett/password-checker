@@ -72,7 +72,7 @@ public void testIsAlphanumeric_FailWithSymbol() {
     assertEquals(false, actual);
 }
 
-  // Test 3: maybe check if its empty, or has special characters or stuff.
+  // Test 3: Test to see if isAlphanumeric accept empty strings
 @Test  
 public void testIsAlphaNumeric_EmptyString() {
   //Arrange 
@@ -87,17 +87,18 @@ public void testIsAlphaNumeric_EmptyString() {
 }  
   
   //Test for the third public method isBannedPassword: check whether the password is banned, returns true if the password exist in the banned password set
-  // Test 1: basic check, checks whether "password123" exist. 
+  // Test 1: Test to see if a certain password is banned 
   @Test
-  public void testisBannedPassword() {
-    //FIXED: lebron passing in argument needs to be all lower case
-    Set<String> banned = new HashSet<>(Arrays.asList("Lebron".toLowerCase(), "Lebron1".toLowerCase()));
-    // this part right here, the string lebron is not being added, i dont understand why.?????
-    PasswordChecker word = new PasswordChecker(5, 6, banned);
+  public void testisBannedPassword_NotBanned() {
+    //Assert
+    PasswordChecker checker = new PasswordChecker(5, 10);
+    String password = "Lebron";
 
-    boolean actual = word.isBannedPassword("Lebron1");
+    //Act
+    boolean actual = checker.isBannedPassword(password);
 
-    assertEquals(true, actual);
+    //Assert
+    assertEquals(false, actual);
   }
 
   //
