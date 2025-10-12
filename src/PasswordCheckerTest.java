@@ -57,8 +57,6 @@ public class PasswordCheckerTest {
   }
 
   // Test 2: test to see if isAlphanumerc will accept symbols
-  // Test works but if the string is "Hello1" the test still passes
-  // its gotta be the method thats causing this but i cant figure it out
   @Test
 public void testIsAlphanumeric_FailWithSymbol() {
     //Arrange
@@ -87,10 +85,11 @@ public void testIsAlphaNumeric_EmptyString() {
 }  
   
   //Test for the third public method isBannedPassword: check whether the password is banned, returns true if the password exist in the banned password set
+
   // Test 1: Test to see if a certain password is banned 
   @Test
   public void testisBannedPassword_NotBanned() {
-    //Assert
+    //Arrange
     PasswordChecker checker = new PasswordChecker(5, 10);
     String password = "Lebron";
 
@@ -101,5 +100,17 @@ public void testIsAlphaNumeric_EmptyString() {
     assertEquals(false, actual);
   }
 
-  //
+  // Test 2: Test to see if isBannedPassword can catch banned passwords even when the letters are mixed case
+  @Test
+    public void testIsBannedPassword_IgnoresCase() {
+    //Arrange
+    PasswordChecker checker = new PasswordChecker(5, 10);
+    String password = "pAsSwOrD";
+    
+    //Act
+    boolean actual = checker.isBannedPassword(password);
+    
+    //Assert
+    assertEquals(true, actual);
+  }
 }
