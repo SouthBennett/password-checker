@@ -56,12 +56,14 @@ public class PasswordCheckerTest {
 
   }
 
-  // Test 2: test for an empty string
+  // Test 2: test to see if isAlphanumerc all letters 
+  // Test works but if the string is "Hello1" the test still passes
+  // its gotta be the method thats causing this but i cant figure it out
   @Test
-public void testIsAlphanumeric_WithSymbol() {
+public void testIsAlphanumeric_AllLetters() {
     //Arrange
     PasswordChecker checker = new PasswordChecker(5, 10);
-    String password = "abc!23";
+    String password = "Hello1";
 
     //Act
     boolean actual = checker.isAlphanumeric(password);
@@ -70,25 +72,23 @@ public void testIsAlphanumeric_WithSymbol() {
     assertEquals(false, actual);
 }
 
-
-
-
-
   // Test 3: maybe check if its empty, or has special characters or stuff.
 
+
+  
   //Test for the third public method isBannedPassword: check whether the password is banned, returns true if the password exist in the banned password set
   // Test 1: basic check, checks whether "password123" exist. 
   @Test
   public void testisBannedPassword() {
-
+    //FIXED: lebron passing in argument needs to be all lower case
+    Set<String> banned = new HashSet<>(Arrays.asList("Lebron".toLowerCase(), "Lebron1".toLowerCase()));
     // this part right here, the string lebron is not being added, i dont understand why.?????
-    PasswordChecker checker = new PasswordChecker(5,10);
+    PasswordChecker word = new PasswordChecker(5, 6, banned);
 
-    boolean actual = checker.isBannedPassword("lebron");
+    boolean actual = word.isBannedPassword("Lebron1");
 
-    assertEquals(false, actual);
+    assertEquals(true, actual);
   }
-  // Test 2: maybe add a list of random strings and check if returning one of them is true
 
-  // Test 3: maybe check if its empty, or has special characters or stuff.
+  //
 }
