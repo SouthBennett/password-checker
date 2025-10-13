@@ -1,4 +1,5 @@
 import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Arrays;
 import java.util.HashSet;
@@ -50,7 +51,7 @@ public class PasswordCheckerTest {
     //arrange
     PasswordChecker word = new PasswordChecker(5, 6);
     //assert
-    boolean actual = word.isAlphanumeric("Hello1");
+    boolean actual = word.isAlphanumeric("Hello23");
     //act
     assertEquals(true, actual);
 
@@ -64,14 +65,15 @@ public class PasswordCheckerTest {
   // Test 1: basic check, checks whether "password123" exist. 
   @Test
   public void testisBannedPassword() {
-
+    //FIXED: lebron passing in argument needs to be all lower case
+    Set<String> banned = new HashSet<>(Arrays.asList("Lebron".toLowerCase(), "Lebron1".toLowerCase()));
     // this part right here, the string lebron is not being added, i dont understand why.?????
-    Set<String> banned = new HashSet<>(Arrays.asList("Lebron"));
     PasswordChecker word = new PasswordChecker(5, 6, banned);
 
-    boolean actual = word.isBannedPassword("Lebron");
+    boolean actual = word.isBannedPassword("Lebron1");
 
     assertEquals(true, actual);
+
   }
   // Test 2: maybe add a list of random strings and check if returning one of them is true
 
