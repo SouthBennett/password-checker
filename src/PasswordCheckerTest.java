@@ -113,4 +113,18 @@ public void testIsAlphaNumeric_EmptyString() {
     //Assert
     assertEquals(true, actual);
   }
+
+  //Test 3: Test to check if the isBannedPassword method can conifrm that a password is banned
+  @Test
+  public void testIsBannedPassword_OnBannedList() {
+    //Arrange
+    PasswordChecker checker = new PasswordChecker(5, 10);
+    String password = "qwerty";
+
+    //Act
+    boolean actual = checker.isBannedPassword(password);
+
+    //Assert
+    assertEquals(true, actual);
+  }
 }
