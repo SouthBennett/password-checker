@@ -57,14 +57,39 @@ public class PasswordCheckerTest {
 
   }
 
-  // Test 2: maybe, check if it only has numbers or string.
-
-  // Test 3: maybe check if its empty, or has special characters or stuff.
-
-  //Test for the third public method isBannedPassword: check whether the password is banned, returns true if the password exist in the banned password set
-  // Test 1: basic check, checks whether "password123" exist. 
+  // Test 2: test to see if isAlphanumerc will accept symbols
   @Test
-  public void testisBannedPassword() {
+public void testIsAlphanumeric_FailWithSymbol() {
+    //Arrange
+    PasswordChecker checker = new PasswordChecker(5, 10);
+    String password = "Hello@";
+
+    //Act
+    boolean actual = checker.isAlphanumeric(password);
+
+    //Assert
+    assertEquals(false, actual);
+}
+
+  // Test 3: Test to see if isAlphanumeric accept empty strings
+@Test  
+public void testIsAlphaNumeric_EmptyString() {
+  //Arrange 
+  PasswordChecker checker = new PasswordChecker(5, 10);
+  String password = "";
+
+  //Act
+  boolean actual = checker.isAlphanumeric(password);
+
+  //Assert
+  assertEquals(false, actual);
+}  
+  
+  //Test for the third public method isBannedPassword: check whether the password is banned, returns true if the password exist in the banned password set
+
+  // Test 1: Test to see if a certain password is banned 
+  @Test
+  public void testisBannedPassword_checkCustomBanned() {
     //FIXED: lebron passing in argument needs to be all lower case
     Set<String> banned = new HashSet<>(Arrays.asList("Lebron".toLowerCase(), "Lebron1".toLowerCase()));
     // this part right here, the string lebron is not being added, i dont understand why.?????
@@ -75,7 +100,33 @@ public class PasswordCheckerTest {
     assertEquals(true, actual);
 
   }
-  // Test 2: maybe add a list of random strings and check if returning one of them is true
 
-  // Test 3: maybe check if its empty, or has special characters or stuff.
+  // Test 2: Test to see if isBannedPassword can catch banned passwords even when the letters are mixed case
+  @Test
+    public void testIsBannedPassword_IgnoresCase() {
+    //Arrange
+    PasswordChecker checker = new PasswordChecker(5, 10);
+    String password = "pAsSwOrD";
+    
+    //Act
+    boolean actual = checker.isBannedPassword(password);
+    
+    //Assert
+    assertEquals(true, actual);
+
+  }
+
+  //Test 3: Test to check if the isBannedPassword method can conifrm that a password is banned
+  @Test
+  public void testIsBannedPassword_OnBannedList() {
+    //Arrange
+    PasswordChecker checker = new PasswordChecker(5, 10);
+    String password = "qwerty";
+
+    //Act
+    boolean actual = checker.isBannedPassword(password);
+
+    //Assert
+    assertEquals(true, actual);
+  }
 }
